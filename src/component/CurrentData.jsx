@@ -1,21 +1,39 @@
-import React from "react";
-import { db } from "../backend/firebase";
-import { onSnapshot, doc } from "@firebase/firestore";
+import React, { useEffect } from "react";
+import "./style.css";
+import PlantSVG from "./svg/Plant";
+import Thermometer from "./svg/Thermometer";
+import fetchSensorData from "../firebase/getService";
 
 function CurrentData() {
-  const unsub = onSnapshot(doc(db, "currentData", "details"), (doc) => {
-    console.log("Current Data: ", doc.data());
-  });
+
+  useEffect(() => {
+    const handleSensorData = (data) => {
+      console.log('Retrieved Data: ', data);
+    }
+
+    fetchSensorData('SensorData/1', handleSensorData);
+  }, [])
 
   return (
-    <div>
-      <ul>
-        <li>Temperature</li>
-        <li>ph:</li>
-        <li>Humidity</li>
-        <li>Mineral</li>
-        <li>Fan</li>
-      </ul>
+    <div className="current-container">
+      <div className="factor-container">
+        <h1>Today's Record</h1>
+        <ul className="factor">
+          <li>Temperature: 12</li>
+          <li>ph: 12</li>
+          <li>Humidity: 12</li>
+          <li>Mineral: 12</li>
+          <li>Fan: on</li>
+        </ul>
+      </div>
+      <div className="image-container">
+        <div className="thermometer">
+          <Thermometer />
+        </div>
+        <div className="plant">
+          <PlantSVG />
+        </div>
+      </div>
     </div>
   );
 }
