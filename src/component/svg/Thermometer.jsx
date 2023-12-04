@@ -1,10 +1,15 @@
 import React from "react";
 
-function Thermometer() {
+function Thermometer({ temperature }) {
+
+  const scaleFactor = 1 + (temperature) / 100;
+  const rectHeight = temperature * scaleFactor ;
+  const rectY = 305 - rectHeight;
+
   return (
     <svg
-      width="240"
-      height="240"
+      width= "240"
+      height= "240"
       viewBox="0 0 425 432"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +52,7 @@ function Thermometer() {
         mask="url(#path-3-inside-2_6_108)"
       />
       <ellipse cx="213" cy="339.5" rx="35" ry="37.5" fill="#BC2A2A" />
-      <rect x="208" y="141" width="10" height="167" rx="5" fill="#BC2A2A" />
+      <rect x="208" y={rectY} width="10" height={rectHeight} rx="5" fill="#BC2A2A" />
     </svg>
   );
 }

@@ -1,0 +1,7 @@
+.plant-svg {
+    transition: fill 1.0s ease-in-out;
+}
+
+.plant-water {
+    transition: fill 0.5 ease;
+}

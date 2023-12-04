@@ -8,7 +8,7 @@ function CurrentData() {
 
   const [sensorData, setSensorData] =  useState({
     Fan: "",
-    Temp: "",
+    temperature: "",
     pH: ""
   });
 
@@ -18,7 +18,7 @@ function CurrentData() {
       console.log('Retrieved Data: ', sensorData);
     }
 
-    fetchSensorData('SensorData/1', handleSensorData);
+    fetchSensorData('Sensor', handleSensorData);
   }, []);
 
   return (
@@ -26,17 +26,17 @@ function CurrentData() {
       <div className="factor-container">
         <h1>Today's Record</h1>
         <ul className="factor">
-          <li>Temperature: {sensorData.Temp}</li>
+          <li>Temperature: {sensorData.temperature} °C</li>
           <li>pH: {sensorData.pH}</li>
-          <li>Fan: {sensorData.Fan}</li>
+          <li>Fan: {sensorData.Fan == 'YES' ? 'On' : 'Off'}</li>
         </ul>
       </div>
       <div className="image-container">
         <div className="thermometer">
-          <Thermometer />
+          <Thermometer temperature={sensorData.temperature}/>
         </div>
         <div className="plant">
-          <PlantSVG />
+          <PlantSVG phLevel = {sensorData.pH}/>
         </div>
       </div>
     </div>
