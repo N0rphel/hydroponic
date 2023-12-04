@@ -28,6 +28,16 @@
 
 /* Current Styles */
 
+/* CSS */
+.fan-button {
+  height: 40px;
+  width: 50px;
+  text-align: center; /* Center the text horizontally */
+  display: flex; /* Use flexbox to align items */
+  justify-content: center; /* Center the text horizontally */
+  align-items: center; /* Center the text vertically */
+}
+
 .current-container {
   position: relative;
   display: flex;
